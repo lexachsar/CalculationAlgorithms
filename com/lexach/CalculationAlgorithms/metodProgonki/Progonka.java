@@ -78,7 +78,7 @@ public class Progonka {
 
     public static void main(String[] args) {
         //создание системы
-        ThreeDiagonalSist system = new ThreeDiagonalSist();
+        ThreeDiagonalSist system = new ThreeDiagonalSist(3);
 
         //вызов метода прогонки
         metodProgonki(system);

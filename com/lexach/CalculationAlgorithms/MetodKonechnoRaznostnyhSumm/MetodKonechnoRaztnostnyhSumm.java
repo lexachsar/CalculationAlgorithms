@@ -1,20 +1,26 @@
 package com.lexach.CalculationAlgorithms.MetodKonechnoRaznostnyhSumm;
 
+import com.lexach.CalculationAlgorithms.metodProgonki.ThreeDiagonalSist;
+
 public class MetodKonechnoRaztnostnyhSumm {
+
+    private static void systemCreate
 
     public static void main(String[] args) {
         //исходная функция: y'' + (x^3 + 1)y' - (x^2 - 1)y = e^(1 - 2.5 x^2)
         //умножаем на -1: -y'' - (x^3 + 1)y' + (x^2 - 1)y = -e^(1 - 2.5 x^2)
 
         int n = 10; //количество точек
-        double a = 0, b = 1; //начальные условия
+        double lb = 0, rb = 1; //начальные условия
 
-        double[][] arr = new double[n][n];
-        double[] brr = new double[n];
+        double[][] a = new double[n][n];
+        double[] b = new double[n];
 
-        double h = (b - a) / n; //шаг
+        ThreeDiagonalSist sist = new ThreeDiagonalSist(a, b, n);
+
+        double h = (rb - lb) / n; //шаг
         double[] x = new double[n];
-        x[0] = a; x[n - 1] = b; //по условию концы известны
+        x[0] = lb; x[n - 1] = rb; //по условию концы известны
 
         //вычисляем x_i
         for(int i = 1; i < n - 1; i++){
@@ -22,7 +28,7 @@ public class MetodKonechnoRaztnostnyhSumm {
         }
 
         //вычисляем матрицу коэффициентов
-        arr[0][0] = 0.5 * (1 + findingPi(x[0]) * h / 2); //êîýô.: B_1
+        arr[0][0] = 0.5 * (1 + findingPi(x[0]) * h / 2); //коэф.: B_1
         for(int i = 1; i < n; i++){
             arr[i][i - 1] = 0.5 * (1 + findingPi(x[i]) * h / 2); //A
             arr[i][i] = 0.5 * (1 - findingPi(x[i]) * h / 2); //B
@@ -36,6 +42,9 @@ public class MetodKonechnoRaztnostnyhSumm {
 
         //----------------------------------------------------------------------
 
+
+
+        /*
         //прямой ход метода прогонки
         double[] P = new double[n];
         double[] Q = new double[n];
@@ -61,6 +70,7 @@ public class MetodKonechnoRaztnostnyhSumm {
         for(int i = n - 2; i >= 0; i--){
             res[i] = P[i] * res[i + 1] + Q[i];
         }
+        */
 
         //вывод ответа
         for(int i = 0; i < res.length; i++){

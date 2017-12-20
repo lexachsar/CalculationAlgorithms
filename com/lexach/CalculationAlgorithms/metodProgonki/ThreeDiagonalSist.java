@@ -6,12 +6,16 @@ import java.util.Random;
 
 public class ThreeDiagonalSist {
 
-    private static final int n = 3;
-    private static final double[][] a = new double[n][n];
-    private static final double[] b = new double[n];
+    private static int n;
+    private static double[][] a = new double[n][n];
+    private static double[] b = new double[n];
 
     //создание системы из рандомных чисел
-    ThreeDiagonalSist() {
+    public ThreeDiagonalSist(int N) {
+        n = N;
+        a = new double[n][n];
+        b = new double[n];
+
         Random r = new Random();
         a[0][0] = (double) ((int) (r.nextDouble() * 1000)) / 10;
         b[0] = (double) ((int) (r.nextDouble() * 1000)) / 10;
@@ -23,6 +27,12 @@ public class ThreeDiagonalSist {
 
             b[i] = (double) ((int) (r.nextDouble() * 1000)) / 10;
         }
+    }
+
+    public ThreeDiagonalSist(double[][] arrA, double[] arrB, int N){
+        n = N;
+        arrA = a;
+        arrB = b;
     }
 
     //возврат n
