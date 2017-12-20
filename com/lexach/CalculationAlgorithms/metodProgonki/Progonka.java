@@ -80,6 +80,8 @@ public class Progonka {
             System.out.print("x[" + (i + 1) + "] = " + x[i] + "\n");
     }
 
+    public static void
+
     public static void main(String[] args) {
 
         //создание системы
@@ -99,4 +101,3 @@ public class Progonka {
         xPrint(x);
     }
 }
-
