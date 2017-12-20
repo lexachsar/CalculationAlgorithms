@@ -4,40 +4,13 @@ import java.util.Random;
 
 public class Progonka {
 
-    private static final int n = 3;
-    private static final double[][] a = new double[n][n];
-    private static final double[] b = new double[n];
-
-    //создание системы из рандомных чисел
-    private static void createSystem() {
-        Random r = new Random();
-        a[0][0] = (double) ((int) (r.nextDouble() * 1000)) / 10;
-        b[0] = (double) ((int) (r.nextDouble() * 1000)) / 10;
-
-        for (int i = 1; i < n; i++) {
-            a[i][i] = (double) ((int) (r.nextDouble() * 1000)) / 10;
-            a[i - 1][i] = (double) ((int) (r.nextDouble() * 1000)) / 10;
-            a[i][i - 1] = (double) ((int) (r.nextDouble() * 1000)) / 10;
-
-            b[i] = (double) ((int) (r.nextDouble() * 1000)) / 10;
-        }
-    }
-
-    //вывод системы
-    private static void printSystem() {
-        for (int i = 0; i < n; i++) {
-
-            for (int j = 0; j < n; j++) {
-                System.out.print(a[i][j] + "\t");
-            }
-
-            System.out.println(b[i]);
-        }
-    }
-
     //рассчет параметра delta = -d_i / (c_i + b_i * delta_i-1)
-    private static double[] deltaCompute() {
-        double[] delta = new double[n];
+    private static double[] deltaCompute(ThreeDiagonalSist sist) {
+        double[][] a = sist.getA();
+        double[] b = sist.getB();
+        int n = sist.getN();
+
+        double[] delta = new double[sist.getN()];
 
         delta[0] = -a[0][1] / a[0][0];
 
@@ -50,7 +23,11 @@ public class Progonka {
     }
 
     //рассчет delta = (r_i - b_i * lambda_i-1) / (c_i + b_i * delta_i-1)
-    private static double[] lambdaCompute(double[] delta) {
+    private static double[] lambdaCompute(double[] delta, ThreeDiagonalSist sist) {
+        double[][] a = sist.getA();
+        double[] b = sist.getB();
+        int n = sist.getN();
+
         double[] lambda = new double[n];
 
         lambda[0] = b[0] / a[0][0];
@@ -64,7 +41,11 @@ public class Progonka {
         return lambda;
     }
 
-    private static double[] xCompute(double[] delta, double[] lambda) {
+    private static double[] xCompute(double[] delta, double[] lambda, ThreeDiagonalSist sist) {
+        double[][] a = sist.getA();
+        double[] b = sist.getB();
+        int n = sist.getN();
+
         double[] x = new double[n];
         x[n - 1] = lambda[n - 1];
         for (int i = n - 2; i >= 0; i--) {
@@ -80,24 +61,26 @@ public class Progonka {
             System.out.print("x[" + (i + 1) + "] = " + x[i] + "\n");
     }
 
-    public static void
-
-    public static void main(String[] args) {
-
-        //создание системы
-        createSystem();
-
+    public static void metodProgonki(ThreeDiagonalSist system){
         //вывод системы
-        printSystem();
+        system.printSystem();
 
         //прямая прогонка
-        double[] delta = deltaCompute();
-        double[] lambda = lambdaCompute(delta);
+        double[] delta = deltaCompute(system);
+        double[] lambda = lambdaCompute(delta, system);
 
         //поиск x (обратная прогонка)
-        double[] x = xCompute(delta, lambda);
+        double[] x = xCompute(delta, lambda, system);
 
         //вывод ответа
         xPrint(x);
+    }
+
+    public static void main(String[] args) {
+        //создание системы
+        ThreeDiagonalSist system = new ThreeDiagonalSist();
+
+        //вызов метода прогонки
+        metodProgonki(system);
     }
 }

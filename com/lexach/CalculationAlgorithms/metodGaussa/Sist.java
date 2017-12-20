@@ -2,12 +2,12 @@ package com.lexach.CalculationAlgorithms.metodGaussa;
 
 import java.util.Random;
 
-class Sist{
-    private static double[][] a;
-    private static double[] b;
-    private static int n;
+public class Sist{
+    protected static double[][] a;
+    protected static double[] b;
+    protected static int n;
 
-    Sist(int inN){
+    public Sist(int inN){
         n = inN;
         a = new double[n][n];
         b = new double[n];
