@@ -1,6 +1,4 @@
-package com.lexach.CalculationAlgorithms.metodProgonki;
-
-import com.lexach.CalculationAlgorithms.metodGaussa.Sist;
+package com.lexach.CalculationAlgorithms.TridiagonalMatrixAlgorithm;
 
 import java.util.Random;
 

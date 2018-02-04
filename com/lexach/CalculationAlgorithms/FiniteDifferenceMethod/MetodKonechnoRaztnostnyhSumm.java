@@ -1,10 +1,10 @@
-package com.lexach.CalculationAlgorithms.MetodKonechnoRaznostnyhSumm;
+package com.lexach.CalculationAlgorithms.FiniteDifferenceMethod;
 
-//import static com.lexach.CalculationAlgorithms.metodProgonki.Progonka.ThreeDiagonalSist;
+//import static com.lexach.CalculationAlgorithms.TridiagonalMatrixAlgorithm.Progonka.ThreeDiagonalSist;
 
-import com.lexach.CalculationAlgorithms.metodProgonki.ThreeDiagonalSist;
+import com.lexach.CalculationAlgorithms.TridiagonalMatrixAlgorithm.ThreeDiagonalSist;
 
-import static com.lexach.CalculationAlgorithms.metodProgonki.Progonka.metodProgonki;
+import static com.lexach.CalculationAlgorithms.TridiagonalMatrixAlgorithm.Progonka.metodProgonki;
 
 public class MetodKonechnoRaztnostnyhSumm {
     //возвращает p_i = p(x_i)
@@ -51,7 +51,8 @@ public class MetodKonechnoRaztnostnyhSumm {
             b[i] = h * h / 2 * getRi(x[i]); //F
         }
 
-        return new ThreeDiagonalSist(a, b, n);
+        ThreeDiagonalSist result = new ThreeDiagonalSist(a, b, n);
+        return result;
 
     }
 

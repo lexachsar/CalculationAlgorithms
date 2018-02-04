@@ -1,6 +1,4 @@
-package com.lexach.CalculationAlgorithms.metodProgonki;
-
-import java.util.Random;
+package com.lexach.CalculationAlgorithms.TridiagonalMatrixAlgorithm;
 
 public class Progonka {
 
